@@ -26,3 +26,22 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    ruta = './files/input/data.csv'
+    resumen = {}
+
+    with open(ruta, mode='r') as archivo:
+        for linea in archivo:
+            columna_5 = linea.strip().split()[4]
+            pares = columna_5.split(',')
+
+            for par in pares:
+                clave, valor = par.split(':')
+                valor = int(valor)
+
+                if clave not in resumen:
+                    resumen[clave] = [valor, valor]
+                else:
+                    resumen[clave][0] = min(resumen[clave][0], valor)
+                    resumen[clave][1] = max(resumen[clave][1], valor)
+
+    return sorted((clave, minimo, maximo) for clave, (minimo, maximo) in resumen.items())

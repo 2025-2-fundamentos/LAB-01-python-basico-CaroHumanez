@@ -16,3 +16,16 @@ def pregunta_11():
 
 
     """
+    ruta = "./files/input/data.csv"
+    acumulados = {}
+
+    with open(ruta, "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            valor_col2 = int(columnas[1])
+            letras_col4 = columnas[3].split(",")
+
+            for letra in letras_col4:
+                acumulados[letra] = acumulados.get(letra, 0) + valor_col2
+
+    return dict(sorted(acumulados.items()))

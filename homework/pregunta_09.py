@@ -24,3 +24,20 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    ruta = './files/input/data.csv'
+    conteo = {}
+
+    with open(ruta, mode='r') as archivo:
+        for linea in archivo:
+            columna_5 = linea.strip().split()[4]
+            pares = columna_5.split(',')
+
+            for par in pares:
+                clave, _ = par.split(':')  
+                if clave in conteo:
+                    conteo[clave] += 1
+                else:
+                    conteo[clave] = 1
+
+    
+    return dict(sorted(conteo.items()))

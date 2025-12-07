@@ -15,3 +15,22 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    ruta_archivo = './files/input/data.csv'
+
+    with open(ruta_archivo, mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+
+        letras = []
+        for linea in lineas:
+            columnas = linea.strip().split()
+            letras.append(columnas[0])
+
+        letras_unicas = sorted(set(letras))
+
+        conteo = []
+        for letra in letras_unicas:
+            cantidad = letras.count(letra)
+            conteo.append((letra, cantidad))
+
+        return conteo
+

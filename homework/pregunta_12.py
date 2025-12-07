@@ -15,3 +15,21 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    ruta = "./files/input/data.csv"
+    suma_por_letra = {}
+    with open(ruta, "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            letra = columnas[0]
+            pares_col5 = columnas[4].split(",")
+
+            suma_valores = 0
+            for par in pares_col5:
+                _, valor = par.split(":")
+                suma_valores += int(valor)
+
+            if letra not in suma_por_letra:
+                suma_por_letra[letra] = 0
+            suma_por_letra[letra] += suma_valores
+
+    return suma_por_letra
